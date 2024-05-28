@@ -4,21 +4,21 @@ class Node:
     data: float
 
     def __init__(self, data=None, next=None, prev=None):
-        self.data = data;
+        self.data = data
         self.__next = next
         self.__prev = prev
 
     def GetNextNode(self):
-        return self.__next;
+        return self.__next
 
     def SetNextNode(self, node=None):
-        self.__next = node;
+        self.__next = node
 
     def GetPrevNode(self):
-        return self.__prev;
+        return self.__prev
 
     def SetPrevNode(self, node=None):
-        self.__prev = node;
+        self.__prev = node
 
 """ Class building the linked list and operating on it. """
 class LinkedList:
@@ -50,14 +50,14 @@ class LinkedList:
             self.insertNodeAtStart(data)
             return
 
-        idx: int = 0;
+        idx: int = 0
         currNode = self.head
         while idx < index:
             prevNode = currNode
-            currNode = currNode.GetNextNode();
+            currNode = currNode.GetNextNode()
             idx+=1
         nodeObj = Node(data,currNode, prevNode)
-        prevNode.SetNextNode(nodeObj);
+        prevNode.SetNextNode(nodeObj)
         self.length += 1
 
     # Removing Node from LL
@@ -71,7 +71,7 @@ class LinkedList:
         idx: int = 0
         currNode = self.head
         while idx < index:
-            currNode = currNode.GetNextNode();
+            currNode = currNode.GetNextNode()
             idx += 1
         prevNode: Node = currNode.GetPrevNode()
         prevNode.SetNextNode(currNode.GetNextNode())
@@ -94,12 +94,12 @@ class LinkedList:
                 currNode = currNode.GetNextNode()
                 if currNode.GetNextNode() is None:
                     llStr += str(currNode.data) + " Length:" + str(self.length)
-                    break;
-            print(llStr);
+                    break
+            print(llStr)
 
 
 if __name__ == '__main__':
-    llObj = LinkedList();
+    llObj = LinkedList()
     llObj.insertNodeAtStart(5)
     llObj.insertNodeAtStart(15)
     llObj.insertNodeAtStart(82)
