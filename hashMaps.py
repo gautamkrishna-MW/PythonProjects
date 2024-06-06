@@ -28,12 +28,27 @@ class Hashmap:
 
     def __getitem__(self, key):
         hashVal = self.hashFunc(key)
-        if type(self.arr[hashVal]) is list:
+        if len(self.arr[hashVal]) > 1:
             for ele in self.arr[hashVal]:
                 if ele[0] == key:
                     return ele[1]
         else:
             return self.arr[hashVal][0][1]
+
+
+    def __delitem__(self, key):
+        hashVal = self.hashFunc(key)
+        remIdx = 0
+        if len(self.arr[hashVal]) > 1:
+            for idx in range(len(self.arr[hashVal])):
+                if self.arr[hashVal][idx][0] == key:
+                    remIdx = idx
+                    break
+            # print(self.arr[hashVal][remIdx])
+            del self.arr[hashVal][remIdx]
+
+        else:
+            del self.arr[hashVal]
 
     def print(self):
         counter = 0;
@@ -56,4 +71,12 @@ if __name__ == '__main__':
     print(hmap["mango"])
     print(hmap["apple01"])
 
+    hmap.print()
+    del hmap["apple20"]
+
+    print("Deleted Apple10")
+    hmap.print()
+    del hmap["apple10"]
+
+    print("Deleted Apple10, Apple20")
     hmap.print()
