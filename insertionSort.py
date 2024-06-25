@@ -2,17 +2,18 @@
 import utilityScript
 import random
 
-def bubbleSort(inpArr):
+def insertionSort(inpArr):
     arrLen = len(inpArr)
-    while arrLen > 0:
-        for idx in range(arrLen-1):
-            if inpArr[idx] > inpArr[idx+1]:
-                inpArr[idx+1],inpArr[idx] = inpArr[idx],inpArr[idx+1]
-        arrLen -= 1
+
+    for idx in range(1, arrLen):
+        tIdx = idx
+        while inpArr[tIdx] < inpArr[tIdx-1] and tIdx >= 1:
+            inpArr[tIdx],inpArr[tIdx - 1] = inpArr[tIdx-1],inpArr[tIdx]
+            tIdx -= 1
 
 @utilityScript.getExecTime
 def sortArray(inpArr):
-    bubbleSort(inpArr)
+    insertionSort(inpArr)
     return inpArr
 
 if __name__ == "__main__":
